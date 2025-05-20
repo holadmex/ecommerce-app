@@ -6,7 +6,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - DATABASE_URI=postgresql://ecommerce:testing123@db:5432/ecommerce_db  # Replace with your actual database URI
+      - DATABASE_URI=postgresql://ecommerce:<password>@db:5432/ecommerce_db 
       - SECRET_KEY=07de321968cb899fe9c2226205812524
     volumes:
       - ./backend:/app
@@ -27,7 +27,7 @@ services:
     container_name: db
     environment:
       POSTGRES_USER: ecommerce
-      POSTGRES_PASSWORD: testing123
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: ecommerce_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
