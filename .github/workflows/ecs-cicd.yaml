@@ -14,7 +14,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        cd tracker-app/frontend
+        cd commerce-app/frontend
         docker build -t tracker-app:latest .
 
     - name: Install Trivy
