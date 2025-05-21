@@ -31,3 +31,4 @@ jobs:
     - name: Run new container
       run: |
         docker run -d --name tracker-app -p 80:80 tracker-app:latest
+#
