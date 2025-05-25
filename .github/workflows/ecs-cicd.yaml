@@ -2,22 +2,20 @@ name: Build and Run Frontend
 
 on:
   push:
-    branches: [ main ]
-
+    branches: main
+    
 jobs:
   deploy-frontend:
     runs-on: self-hosted
-
     steps:
+
     - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Build Docker image
       run: |
-        pwd
-        ls
         cd frontend
-        docker build -t tracker-app:latest .
+        docker build -t tracker-app:v1 .
 
     - name: Install Trivy
       run: |
@@ -26,9 +24,8 @@ jobs:
  
     - name: Run Trivy Scan
       run: |
-        trivy image --severity HIGH,CRITICAL tracker-app:latest || exit 1
+        trivy image --severity HIGH,CRITICAL tracker-app:v1 || exit 1
 
     - name: Run new container
       run: |
-        docker run -d --name tracker-app -p 80:80 tracker-app:latest
-#
+        docker run -d --name tracker-app -p 80:80 tracker-app:v1
